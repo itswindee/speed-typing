@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { faker } from "@faker-js/faker";
+import RestartButton from "./components/RestartButton";
 
-function App() {
+const words = faker.random.words(10);
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>  
+      <CountdownTimer timeLeft={30} />
+      <GeneratedWords words={words} />;
+      <RestartButton 
+        className={"mx-auto mt-10 text-slate-500"}
+        onRestart={() => null}
+        />
+    </>
   );
-}
+};
+
+const GeneratedWords = ({words}: {words: string}) => {
+  return <div className="text-4xl text-center text-slate-500">{words}</div>;
+};
+
+const CountdownTimer = ({timeLeft}: {timeLeft: number}) => {
+  return <h2 className="text-primary-400 font-medium">Time: {timeLeft}</h2>;
+};
 
 export default App;
